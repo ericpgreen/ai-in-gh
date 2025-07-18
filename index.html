@@ -61,10 +61,23 @@
             padding: 1rem 2rem;
         }
 
+        .nav-branding {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .dghi-logo {
+            height: 40px;
+            width: auto;
+        }
+
         .nav-logo {
             font-weight: 700;
             font-size: 1.2rem;
             color: var(--duke-navy);
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--limestone);
         }
 
         nav ul {
@@ -574,6 +587,23 @@
                 gap: 1rem;
             }
 
+            .nav-branding {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-logo {
+                padding-left: 0;
+                border-left: none;
+                padding-top: 0.5rem;
+                border-top: 2px solid var(--limestone);
+            }
+
+            .dghi-logo {
+                height: 35px;
+            }
+
             nav ul {
                 gap: 1rem;
                 font-size: 0.9rem;
@@ -624,7 +654,11 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="nav-logo">AI + Global Health</div>
+            <div class="nav-branding">
+                <!-- Replace src with actual DGHI logo path -->
+                <img src="dghi-logo.png" alt="Duke Global Health Institute" class="dghi-logo">
+                <div class="nav-logo">AI + Global Health</div>
+            </div>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -868,8 +902,11 @@
 
     <!-- Footer -->
     <footer>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem;">
+            <img src="dghi-logo-white.png" alt="Duke Global Health Institute" style="height: 50px; width: auto; opacity: 0.8;">
+        </div>
         <p>&copy; 2024 Duke University | Global Health 199FS</p>
-        <p>Part of the <a href="https://focus.duke.edu">FOCUS Program</a></p>
+        <p>Part of the <a href="https://focus.duke.edu">FOCUS Program</a> | <a href="https://globalhealth.duke.edu">Duke Global Health Institute</a></p>
     </footer>
 
     <script>
