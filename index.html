@@ -387,6 +387,8 @@
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
         .timeline-content:hover {
@@ -394,8 +396,34 @@
             transform: scale(1.02);
         }
 
+        .timeline-content::after {
+            content: '→';
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: var(--duke-royal);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover::after {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
         .timeline-item:nth-child(even) .timeline-content {
             margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '←';
+            left: 1rem;
+            right: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:hover::after {
+            transform: translateX(-3px);
         }
 
         .timeline-dot {
@@ -407,7 +435,21 @@
             background: var(--duke-royal);
             border-radius: 50%;
             border: 4px solid white;
+            z-index: 2;
+            box-shadow: 0 0 0 4px var(--hatteras);
+        }
+
+        /* Connecting line between dots */
+        .timeline-connector {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60px;
+            background: var(--duke-royal);
+            top: 20px;
             z-index: 1;
+            opacity: 0.3;
         }
 
         .week-number {
@@ -648,6 +690,132 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--graphite);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--duke-navy);
+        }
+
+        .week-detail {
+            margin-bottom: 3rem;
+        }
+
+        .week-detail h2 {
+            color: var(--duke-navy);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--limestone);
+        }
+
+        .week-detail h3 {
+            color: var(--duke-royal);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .week-session {
+            background: var(--whisper-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--eno);
+        }
+
+        .week-session h4 {
+            color: var(--duke-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .session-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--graphite);
+        }
+
+        .reading-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .reading-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .reading-list li::before {
+            content: '📖';
+            position: absolute;
+            left: 0;
+        }
+
+        .speaker-info {
+            background: var(--hatteras);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .speaker-info strong {
+            color: var(--duke-royal);
+        }
+
+        .assignment-box {
+            background: var(--persimmon);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .assignment-box h4 {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -731,47 +899,51 @@
             
             <div class="timeline">
                 <div class="timeline-item reveal">
-                    <div class="timeline-content">
+                    <div class="timeline-content" onclick="openWeekDetails('weeks1-2')">
                         <div class="week-number">WEEK 1-2</div>
                         <h3>Foundations</h3>
                         <p>What can AI do? Health systems & equity</p>
                         <span class="deliverable">📔 Reflection #1</span>
                     </div>
                     <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-content">
+                    <div class="timeline-content" onclick="openWeekDetails('weeks3-4')">
                         <div class="week-number">WEEK 3-4</div>
                         <h3>Understanding AI</h3>
                         <p>Inside the black box, Ethics & bias</p>
                         <span class="deliverable">🧪 AI Exercise #1</span>
                     </div>
                     <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-content">
+                    <div class="timeline-content" onclick="openWeekDetails('weeks5-7')">
                         <div class="week-number">WEEK 5-7</div>
                         <h3>Design Sprint</h3>
                         <p>Problem framing, User research, Ideation</p>
                         <span class="deliverable">📝 Design Brief</span>
                     </div>
                     <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-content">
+                    <div class="timeline-content" onclick="openWeekDetails('weeks8-10')">
                         <div class="week-number">WEEK 8-10</div>
                         <h3>Build & Test</h3>
                         <p>Prototyping, Stakeholder feedback</p>
                         <span class="deliverable">✅ Team Check-in</span>
                     </div>
                     <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
-                    <div class="timeline-content">
+                    <div class="timeline-content" onclick="openWeekDetails('weeks11-14')">
                         <div class="week-number">WEEK 11-14</div>
                         <h3>Polish & Present</h3>
                         <p>Iteration, Storytelling, Final showcase</p>
@@ -909,7 +1081,445 @@
         <p>Part of the <a href="https://focus.duke.edu">FOCUS Program</a> | <a href="https://globalhealth.duke.edu">Duke Global Health Institute</a></p>
     </footer>
 
+    <!-- Week Details Modals -->
+    <div id="weekModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
     <script>
+        // Week details content
+        const weekDetails = {
+            'weeks1-2': {
+                title: 'Weeks 1-2: Foundations',
+                content: `
+                    <div class="week-detail">
+                        <h3>Week 1: Welcome & Orientation</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, August 26: Course Introduction</h4>
+                            <div class="session-meta">
+                                <span>📍 Trent Hall 039A</span>
+                                <span>⏰ 3:05-4:20 PM</span>
+                            </div>
+                            <p>Welcome to AI in Global Health! We'll explore the big questions at the intersection of artificial intelligence and global health equity.</p>
+                            <ul class="reading-list">
+                                <li>Obermeyer et al. (2019). "Dissecting racial bias in an algorithm used to manage the health of populations"</li>
+                                <li>WHO Report: "Ethics and governance of artificial intelligence for health"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, August 28: What Can AI Do?</h4>
+                            <div class="session-meta">
+                                <span>🛠️ Hands-on Lab</span>
+                                <span>💻 Bring your laptop</span>
+                            </div>
+                            <p>Train your own AI model! We'll demystify machine learning through hands-on experimentation.</p>
+                            <p><strong>Activity:</strong> Build a simple health classifier using Teachable Machine</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #1</h4>
+                            <p>Write a 250-word reflection on your initial thoughts about AI's potential in global health. What excites you? What concerns you?</p>
+                            <p><strong>Submit by:</strong> Sunday, September 1, 11:59 PM</p>
+                        </div>
+                        
+                        <h3>Week 2: Health Systems & Equity</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, September 2: Social Determinants of Health</h4>
+                            <div class="speaker-info">
+                                <strong>Guest Speaker:</strong> Dr. Kameron Matthews<br>
+                                Chief Health Officer, Cityblock Health<br>
+                                Duke Public Policy '00
+                            </div>
+                            <p>Understanding health inequities and the social factors that shape health outcomes globally.</p>
+                            <ul class="reading-list">
+                                <li>Marmot, M. (2005). "Social determinants of health inequalities"</li>
+                                <li>Case study: "Digital health interventions in rural Kenya"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, September 4: Problem Scoping Workshop</h4>
+                            <p>Team formation and initial brainstorming of global health challenges you want to address.</p>
+                            <p><strong>In-class:</strong> Speed dating for team formation, problem mapping exercise</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>✅ Due: Team Formation</h4>
+                            <p>Submit your team of 3 members and initial problem area of interest.</p>
+                        </div>
+                    </div>
+                `
+            },
+            'weeks3-4': {
+                title: 'Weeks 3-4: Understanding AI',
+                content: `
+                    <div class="week-detail">
+                        <h3>Week 3: Inside the Black Box</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, September 9: How LLMs Work</h4>
+                            <div class="speaker-info">
+                                <strong>Guest Speaker:</strong> Dr. Monica Agrawal<br>
+                                Duke AI Health<br>
+                                Assistant Professor, Biostatistics & Bioinformatics
+                            </div>
+                            <p>Demystifying large language models: training, hallucinations, and context limits.</p>
+                            <ul class="reading-list">
+                                <li>Vaswani et al. (2017). "Attention is All You Need" (excerpts)</li>
+                                <li>Interactive: "The Illustrated Transformer" by Jay Alammar</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, September 11: Prompt Remix Lab</h4>
+                            <p>Master the art of prompt engineering with ChatGPT and Claude.</p>
+                            <p><strong>Lab Activities:</strong></p>
+                            <ul>
+                                <li>Prompt patterns for health information extraction</li>
+                                <li>Testing model capabilities and limitations</li>
+                                <li>Comparative analysis: GPT-4 vs Claude</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>🧪 Due: AI Exercise #1</h4>
+                            <p>Design 5 prompts that could help solve your team's chosen health challenge. Test them on both ChatGPT and Claude, documenting the results.</p>
+                        </div>
+                        
+                        <h3>Week 4: Ethics of AI in Health</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, September 16: Bias, Surveillance, Data Colonialism</h4>
+                            <p>Critical examination of AI's ethical challenges in global health contexts.</p>
+                            <ul class="reading-list">
+                                <li>Benjamin, R. (2019). "Race After Technology" (Chapter 2)</li>
+                                <li>Birhane, A. (2021). "Algorithmic colonialism"</li>
+                                <li>Case: "Aadhaar and health data in India"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, September 18: LLM Fine-tuning Part 1</h4>
+                            <p>Training the Listener: Adapting AI to understand global health narratives.</p>
+                            <p><strong>Workshop:</strong> Preparing culturally-aware training data</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #2</h4>
+                            <p>Reflect on the ethical implications of your team's proposed AI solution. Who benefits? Who might be harmed?</p>
+                        </div>
+                    </div>
+                `
+            },
+            'weeks5-7': {
+                title: 'Weeks 5-7: Design Sprint',
+                content: `
+                    <div class="week-detail">
+                        <h3>Week 5: Global Voices in Design</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, September 23: Who Designs AI? For Whom?</h4>
+                            <div class="speaker-info">
+                                <strong>Guest Speaker:</strong> Lyvia Lusiji<br>
+                                Product Lead, Jacaranda Health<br>
+                                Building maternal health AI tools in Kenya
+                            </div>
+                            <p>Exploring positionality, power, and justice in AI design for global health.</p>
+                            <ul class="reading-list">
+                                <li>Costanza-Chock, S. (2020). "Design Justice" (Chapter 1)</li>
+                                <li>Case studies from Design Justice Network</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, September 25: LLM Fine-tuning Part 2</h4>
+                            <p>Hands-on workshop continuing our exploration of model adaptation.</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>🧪 Due: AI Exercise #2</h4>
+                            <p>Create a small fine-tuning dataset (10-20 examples) that would help an AI understand your problem domain better.</p>
+                        </div>
+                        
+                        <h3>Week 6: Design Thinking</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, September 30: Empathy and Problem Framing</h4>
+                            <div class="speaker-info">
+                                <strong>Guest Speaker:</strong> Jon Reifschneider<br>
+                                Executive Director, Duke AI for Product Innovation<br>
+                                Founder & CEO, Inquisite
+                            </div>
+                            <p>Introduction to design thinking methodology for AI solutions.</p>
+                            <p><strong>Workshop:</strong> "How Might We..." question development</p>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, October 2: User Interviews (ASYNC)</h4>
+                            <p><strong>No in-person class.</strong> Teams conduct user research independently.</p>
+                            <p>Interview at least 3 potential users or stakeholders for your solution.</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #3</h4>
+                            <p>Synthesize insights from your user interviews. What surprised you?</p>
+                        </div>
+                        
+                        <h3>Week 7: Journey Mapping & Ideation</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, October 7: Design Thinking II</h4>
+                            <p>Creating user journey maps and conducting team ideation sprints.</p>
+                            <ul>
+                                <li>Mapping current vs. future state journeys</li>
+                                <li>Identifying AI intervention points</li>
+                                <li>Crazy 8s ideation exercise</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, October 9: Storyboarding Studio</h4>
+                            <p>Transform your ideas into visual narratives.</p>
+                            <p><strong>Deliverable:</strong> Create storyboards showing your AI solution in action</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📝 Due: Design Brief</h4>
+                            <p>Submit a 3-page brief outlining your problem definition, target users, proposed AI solution, and ethical considerations.</p>
+                            <p><strong>Include:</strong> User personas, journey maps, initial concept sketches</p>
+                        </div>
+                    </div>
+                `
+            },
+            'weeks8-10': {
+                title: 'Weeks 8-10: Build & Test',
+                content: `
+                    <div class="week-detail">
+                        <h3>Week 8: Fall Break & Build Time</h3>
+                        
+                        <div class="week-session">
+                            <h4>Monday, October 14: NO CLASS - Fall Break</h4>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, October 16: Build Day</h4>
+                            <p>Dedicated studio time for prototyping with instructor support.</p>
+                            <p><strong>Tools available:</strong> Figma templates, ChatGPT/Claude APIs, sample code</p>
+                            <p><strong>Goal:</strong> Create your first working prototype or detailed mockup</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #4</h4>
+                            <p>Document your prototyping process. What's working? What challenges are you facing?</p>
+                        </div>
+                        
+                        <h3>Week 9: Partnerships & Constraints</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, October 21: Stakeholder Ecosystems</h4>
+                            <p>Understanding the complex landscape of global health partnerships.</p>
+                            <ul class="reading-list">
+                                <li>WHO Digital Health Guidelines</li>
+                                <li>Case: "PATH's approach to digital health partnerships"</li>
+                                <li>Panel: NGO, government, and private sector perspectives</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, October 23: Constraint Challenge</h4>
+                            <p>Redesign your solution under real-world limitations.</p>
+                            <p><strong>Scenarios:</strong></p>
+                            <ul>
+                                <li>Limited internet connectivity</li>
+                                <li>$100 total budget</li>
+                                <li>Low digital literacy users</li>
+                                <li>Restrictive data privacy laws</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>🧪 Due: AI Exercise #3</h4>
+                            <p>Adapt your AI solution for a resource-constrained environment. Document the trade-offs.</p>
+                        </div>
+                        
+                        <h3>Week 10: Business Models & Feedback</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, October 28: Markets & Models</h4>
+                            <p>Exploring sustainable business models for health AI: nonprofit vs. commercial approaches.</p>
+                            <ul class="reading-list">
+                                <li>Prahalad, C.K. "The Fortune at the Bottom of the Pyramid"</li>
+                                <li>Case studies: mPharma, Babylon Health, Ada Health</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, October 30: Mentor Feedback Session</h4>
+                            <p>Present your working prototypes to guest mentors from:</p>
+                            <ul>
+                                <li>Duke AI Health</li>
+                                <li>Local health tech startups</li>
+                                <li>Global health practitioners</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #5</h4>
+                            <p>Synthesize feedback from mentors. How will you iterate your solution?</p>
+                        </div>
+                    </div>
+                `
+            },
+            'weeks11-14': {
+                title: 'Weeks 11-14: Polish & Present',
+                content: `
+                    <div class="week-detail">
+                        <h3>Week 11: Iteration & Testing</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, November 4: User Testing Methods</h4>
+                            <p>Learn approaches for testing AI solutions with real users.</p>
+                            <ul>
+                                <li>Usability testing protocols</li>
+                                <li>A/B testing for AI features</li>
+                                <li>Measuring health outcomes vs. user satisfaction</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, November 6: Peer Playtesting</h4>
+                            <p>Teams test each other's prototypes in structured sessions.</p>
+                            <p><strong>Format:</strong> 20-minute rotations with feedback forms</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>✅ Due: Team Check-in #2</h4>
+                            <p>Submit team health check and revised project timeline.</p>
+                        </div>
+                        
+                        <h3>Week 12: Scale & Infrastructure</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, November 11: What It Takes to Scale</h4>
+                            <p>From pilot to population: infrastructure, trust, and health systems.</p>
+                            <ul class="reading-list">
+                                <li>Labrique et al. "Best practices in scaling digital health"</li>
+                                <li>Case: "Scaling Medic Mobile from 1 to 27 countries"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, November 13: Local to Global Mapping</h4>
+                            <p>Workshop: Adapting your solution for different contexts.</p>
+                            <p><strong>Exercise:</strong> Create implementation plans for 3 different countries/contexts</p>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Reflection #6</h4>
+                            <p>Reflect on scalability. What would it take to reach 1 million users?</p>
+                        </div>
+                        
+                        <h3>Week 13: Storytelling & Final Prep</h3>
+                        
+                        <div class="week-session">
+                            <h4>Tuesday, November 18: Storytelling for Impact</h4>
+                            <p>Crafting compelling narratives about your AI solution.</p>
+                            <ul>
+                                <li>Pitch deck design principles</li>
+                                <li>Demo strategies for AI products</li>
+                                <li>Addressing skepticism and concerns</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, November 20: Final Studio</h4>
+                            <p>Last working session before presentations.</p>
+                            <p><strong>Support available for:</strong></p>
+                            <ul>
+                                <li>Slide design and storytelling</li>
+                                <li>Demo troubleshooting</li>
+                                <li>Presentation practice</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>🧪 Due: AI Exercise #4</h4>
+                            <p>Create a 2-minute video demo of your AI solution in action.</p>
+                        </div>
+                        
+                        <h3>Thanksgiving Week</h3>
+                        <div class="week-session">
+                            <h4>Monday, November 25: Virtual Team Work Session</h4>
+                            <p><strong>Required:</strong> Teams meet (in-person or remotely) for 75 minutes to finalize presentations.</p>
+                        </div>
+                        
+                        <h3>Week 14: Showcase & Reflection</h3>
+                        
+                        <div class="week-session">
+                            <h4>Monday, December 2: Public Showcase</h4>
+                            <p><strong>🎯 Final Presentations</strong></p>
+                            <p>Teams present their AI solutions to peers, faculty, and invited guests.</p>
+                            <ul>
+                                <li>10-minute presentations</li>
+                                <li>5-minute Q&A</li>
+                                <li>Live demos encouraged</li>
+                                <li>Judging panel feedback</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="week-session">
+                            <h4>Thursday, December 4: Course Wrap-up</h4>
+                            <p>Reflection, celebration, and next steps.</p>
+                            <p><strong>Agenda:</strong></p>
+                            <ul>
+                                <li>Showcase debrief</li>
+                                <li>Individual reflections</li>
+                                <li>Resources for continuing your work</li>
+                                <li>Course feedback</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="assignment-box">
+                            <h4>📔 Due: Final Reflection #7</h4>
+                            <p>Write a 500-word reflection on your learning journey. How have your views on AI in global health evolved?</p>
+                            <p><strong>Due:</strong> December 8, 11:59 PM</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Modal functions
+        function openWeekDetails(weekId) {
+            const modal = document.getElementById('weekModal');
+            const modalBody = document.getElementById('modalBody');
+            const details = weekDetails[weekId];
+            
+            modalBody.innerHTML = `<h2>${details.title}</h2>${details.content}`;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('weekModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('weekModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
         // Reveal elements on scroll
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
