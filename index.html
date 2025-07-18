@@ -25,6 +25,8 @@
             --cast-iron: #262626;
             --graphite: #666666;
             --limestone: #E5E5E5;
+            --prussian: #005587;
+            --shale: #0577B1;
         }
 
         html {
@@ -35,7 +37,8 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--cast-iron);
-            background-color: var(--whisper-gray);
+            background-color: #ffffff;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -43,115 +46,152 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(1, 33, 105, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--duke-navy);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        nav li {
-            margin: 0 1.5rem;
+            gap: 2rem;
         }
 
         nav a {
-            color: white;
+            color: var(--cast-iron);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
+            font-size: 0.95rem;
         }
 
         nav a:hover {
-            color: var(--persimmon);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--persimmon);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+            color: var(--duke-royal);
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--duke-navy) 0%, var(--duke-royal) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            background: var(--whisper-gray);
+            padding-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .blob {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.03) 10px,
-                rgba(255,255,255,0.03) 20px
-            );
-            animation: drift 20s linear infinite;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            animation: float 20s infinite ease-in-out;
         }
 
-        @keyframes drift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--shale);
+            top: -200px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: var(--eno);
+            bottom: -150px;
+            right: -100px;
+            animation-delay: 7s;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--persimmon);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -50px) scale(1.1); }
+            50% { transform: translate(-40px, 30px) scale(0.9); }
+            75% { transform: translate(50px, 40px) scale(1.05); }
         }
 
         .hero-content {
             text-align: center;
-            color: white;
             z-index: 1;
             padding: 2rem;
-            max-width: 900px;
+            max-width: 800px;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--duke-navy);
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            font-weight: 800;
+            letter-spacing: -2px;
+            animation: fadeIn 1s ease;
         }
 
         .hero .subtitle {
-            font-size: clamp(1.2rem, 2vw, 1.5rem);
-            color: var(--persimmon);
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: var(--prussian);
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+            font-weight: 300;
+            animation: fadeIn 1s ease 0.2s both;
         }
 
-        .hero p {
-            font-size: 1.1rem;
+        .hero .course-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
             margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.4s both;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease 0.4s both;
         }
 
-        @keyframes fadeInUp {
+        .hero .course-info span {
+            color: var(--graphite);
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -164,205 +204,362 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s both;
+            animation: fadeIn 1s ease 0.6s both;
         }
 
         .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
+            font-size: 1rem;
         }
 
         .btn-primary {
-            background: var(--persimmon);
+            background: var(--duke-royal);
             color: white;
+            box-shadow: 0 4px 15px rgba(0, 83, 155, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--copper);
+            background: var(--duke-navy);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0, 83, 155, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+            background: white;
+            color: var(--duke-royal);
+            border: 2px solid var(--duke-royal);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: var(--duke-navy);
+            background: var(--duke-royal);
+            color: white;
         }
 
         /* Section Styles */
         section {
             padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--duke-navy);
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--eno);
-            margin: 1rem auto;
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--graphite);
+            margin-bottom: 3rem;
+            max-width: 600px;
         }
 
         /* About Section */
-        .about-grid {
+        #about {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--whisper-gray);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--eno);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--eno);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: var(--persimmon);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: var(--piedmont);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: var(--shale);
+        }
+
+        .feature-card h3 {
+            color: var(--duke-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Schedule Section */
+        #schedule {
+            background: var(--hatteras);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--limestone);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--duke-royal);
+            border-radius: 50%;
+            border: 4px solid white;
+            z-index: 1;
+        }
+
+        .week-number {
+            font-size: 0.9rem;
+            color: var(--duke-royal);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--duke-navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content p {
+            color: var(--graphite);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .deliverable {
+            display: inline-block;
+            background: var(--persimmon);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Assignments Section */
+        #assignments {
+            background: white;
+        }
+
+        .grade-breakdown {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .about-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--eno);
-        }
-
-        .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .about-card h3 {
-            color: var(--duke-royal);
-            margin-bottom: 1rem;
-        }
-
-        .about-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Schedule Section */
-        .schedule {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .week {
-            border-bottom: 1px solid var(--limestone);
-            transition: all 0.3s ease;
-        }
-
-        .week:hover {
-            background: var(--whisper-gray);
-        }
-
-        .week-header {
-            padding: 1.5rem;
-            cursor: pointer;
+        .grade-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .week-header h3 {
-            color: var(--duke-navy);
-            margin: 0;
-        }
-
-        .week-content {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .week.active .week-content {
-            max-height: 500px;
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        .week-badge {
-            background: var(--piedmont);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Assignments Section */
-        .assignments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .assignment-card {
-            background: white;
+            background: var(--whisper-gray);
             padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--persimmon);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
 
-        .assignment-card h4 {
+        .grade-item:hover {
+            transform: translateX(10px);
+        }
+
+        .grade-percentage {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--duke-royal);
-            margin-bottom: 0.5rem;
+            margin-right: 1.5rem;
+            min-width: 80px;
         }
 
-        .assignment-card .weight {
-            color: var(--copper);
-            font-weight: 600;
+        .grade-details h4 {
+            color: var(--duke-navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .grade-details p {
+            color: var(--graphite);
+            font-size: 0.9rem;
         }
 
         /* Tools Section */
-        .tools-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+        #tools {
+            background: var(--whisper-gray);
         }
 
-        .tool-card {
-            background: var(--duke-royal);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
+        .tools-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tool-item {
+            background: white;
+            padding: 2rem 1rem;
+            border-radius: 15px;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 2px solid transparent;
         }
 
-        .tool-card:hover {
-            background: var(--duke-navy);
-            transform: scale(1.05);
+        .tool-item:hover {
+            border-color: var(--duke-royal);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .tool-card h4 {
+        .tool-logo {
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
+        }
+
+        .tool-item h4 {
+            color: var(--duke-navy);
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tool-item p {
+            color: var(--graphite);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--duke-navy);
+            color: white;
+            text-align: center;
+        }
+
+        #contact .section-title {
+            color: white;
+        }
+
+        #contact .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            color: var(--persimmon);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--persimmon);
         }
 
         /* Footer */
         footer {
             background: var(--cast-iron);
-            color: white;
+            color: rgba(255,255,255,0.8);
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 2rem;
         }
 
         footer a {
@@ -372,86 +569,90 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                padding: 0.5rem 0;
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
             }
-            
-            nav li {
-                margin: 0.5rem;
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
             }
 
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            section {
-                padding: 3rem 1rem;
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-content {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
             }
         }
 
-        /* Floating AI Assistant */
-        .ai-assistant {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: var(--eno);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 999;
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
-        .ai-assistant:hover {
-            transform: scale(1.1);
-            background: var(--magnolia);
-        }
-
-        .ai-assistant::before {
-            content: '🤖';
-            font-size: 1.5rem;
-        }
-
-        /* Special Effects */
-        .highlight {
-            background: linear-gradient(120deg, var(--persimmon) 0%, var(--persimmon) 100%);
-            background-repeat: no-repeat;
-            background-size: 100% 0.3em;
-            background-position: 0 85%;
-            transition: background-size 0.3s ease;
-        }
-
-        .highlight:hover {
-            background-size: 100% 100%;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#assignments">Assignments</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="nav-logo">AI + Global Health</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#assignments">Grading</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
         <div class="hero-content">
             <h1>AI in Global Health</h1>
             <p class="subtitle">Smart Solutions for a Healthier World</p>
-            <p>Explore the transformative potential of artificial intelligence in global health through hands-on design, ethical thinking, and collaborative innovation.</p>
+            <div class="course-info">
+                <span>📍 Trent Hall 039A</span>
+                <span>📅 Tues/Thurs 3:05-4:20</span>
+                <span>🎓 FOCUS Program</span>
+            </div>
             <div class="cta-buttons">
-                <a href="#about" class="btn btn-primary">Learn More</a>
+                <a href="#about" class="btn btn-primary">Explore Course</a>
                 <a href="#schedule" class="btn btn-secondary">View Schedule</a>
             </div>
         </div>
@@ -459,193 +660,236 @@
 
     <!-- About Section -->
     <section id="about">
-        <h2 class="section-title">Course Overview</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="icon">🌍</div>
-                <h3>Global Health Focus</h3>
-                <p>Dive into real-world health challenges and explore how AI can promote equity and expand access to care in low-resource settings.</p>
+        <div class="container">
+            <h2 class="section-title reveal">What You'll Learn</h2>
+            <p class="section-subtitle reveal">No coding required. Just curiosity and creativity.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Health Challenges</h3>
+                    <p>Explore real-world health inequities and how AI might help expand access to care in low-resource settings around the world.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Without Code</h3>
+                    <p>Learn to use ChatGPT, Claude, and other AI tools to prototype solutions. Understand what AI can (and can't) do for health.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">✏️</div>
+                    <h3>Design Thinking</h3>
+                    <p>Use human-centered design methods to identify needs and create AI-enabled solutions through hands-on studio sessions.</p>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Ethics First</h3>
+                    <p>Critically examine bias, privacy, and equity issues. Learn to build AI solutions that promote justice, not harm.</p>
+                </div>
             </div>
-            <div class="about-card">
-                <div class="icon">🤖</div>
-                <h3>AI Without Code</h3>
-                <p>No programming experience needed! Learn to use tools like ChatGPT and Claude to prototype solutions and understand AI's capabilities.</p>
-            </div>
-            <div class="about-card">
-                <div class="icon">🎨</div>
-                <h3>Design Thinking</h3>
-                <p>Use creative problem-solving to identify needs and prototype AI-enabled solutions through team-based design studios.</p>
-            </div>
-            <div class="about-card">
-                <div class="icon">⚖️</div>
-                <h3>Ethics First</h3>
-                <p>Critically examine bias, privacy, equity, and accountability in AI applications for global health contexts.</p>
-            </div>
-        </div>
-
-        <div style="margin-top: 4rem; background: var(--hatteras); padding: 2rem; border-radius: 12px;">
-            <h3 style="color: var(--duke-navy); margin-bottom: 1rem;">Course Details</h3>
-            <p><strong>Course Code:</strong> Global Health 199FS</p>
-            <p><strong>Meeting Times:</strong> Tuesdays & Thursdays, 3:05-4:20 PM</p>
-            <p><strong>Location:</strong> Trent Hall 039A (Garden Level)</p>
-            <p><strong>Instructor:</strong> <a href="https://globalhealth.duke.edu/people/green-eric" style="color: var(--duke-royal);">Eric Green, Ph.D.</a></p>
         </div>
     </section>
 
     <!-- Schedule Section -->
     <section id="schedule">
-        <h2 class="section-title">Weekly Schedule</h2>
-        <div class="schedule">
-            <div class="week">
-                <div class="week-header">
-                    <h3>Week 1: Welcome & What Can AI Do?</h3>
-                    <span class="week-badge">Aug 26-28</span>
+        <div class="container">
+            <h2 class="section-title reveal">Course Journey</h2>
+            <p class="section-subtitle reveal">14 weeks of exploration, creation, and collaboration</p>
+            
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-content">
+                        <div class="week-number">WEEK 1-2</div>
+                        <h3>Foundations</h3>
+                        <p>What can AI do? Health systems & equity</p>
+                        <span class="deliverable">📔 Reflection #1</span>
+                    </div>
+                    <div class="timeline-dot"></div>
                 </div>
-                <div class="week-content">
-                    <p><strong>Tuesday:</strong> Course intro, big questions in global health & AI</p>
-                    <p><strong>Thursday:</strong> Train your own AI</p>
-                    <p><strong>📔 Due:</strong> Reflection #1</p>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-content">
+                        <div class="week-number">WEEK 3-4</div>
+                        <h3>Understanding AI</h3>
+                        <p>Inside the black box, Ethics & bias</p>
+                        <span class="deliverable">🧪 AI Exercise #1</span>
+                    </div>
+                    <div class="timeline-dot"></div>
                 </div>
-            </div>
-            <div class="week">
-                <div class="week-header">
-                    <h3>Week 2: Health Systems & Problem Scoping</h3>
-                    <span class="week-badge">Sep 2-4</span>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-content">
+                        <div class="week-number">WEEK 5-7</div>
+                        <h3>Design Sprint</h3>
+                        <p>Problem framing, User research, Ideation</p>
+                        <span class="deliverable">📝 Design Brief</span>
+                    </div>
+                    <div class="timeline-dot"></div>
                 </div>
-                <div class="week-content">
-                    <p><strong>Tuesday:</strong> Social determinants of health with Dr. Kameron Matthews</p>
-                    <p><strong>Thursday:</strong> Team formation & brainstorming</p>
-                    <p><strong>✅ Due:</strong> Team Formation</p>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-content">
+                        <div class="week-number">WEEK 8-10</div>
+                        <h3>Build & Test</h3>
+                        <p>Prototyping, Stakeholder feedback</p>
+                        <span class="deliverable">✅ Team Check-in</span>
+                    </div>
+                    <div class="timeline-dot"></div>
                 </div>
-            </div>
-            <div class="week">
-                <div class="week-header">
-                    <h3>Week 3: Inside the Black Box</h3>
-                    <span class="week-badge">Sep 9-11</span>
-                </div>
-                <div class="week-content">
-                    <p><strong>Tuesday:</strong> How LLMs work with Dr. Monica Agrawal</p>
-                    <p><strong>Thursday:</strong> Prompt Remix Lab</p>
-                    <p><strong>🧪 Due:</strong> AI Exercise #1</p>
-                </div>
-            </div>
-            <div class="week">
-                <div class="week-header">
-                    <h3>Week 4: Ethics & Fine-tuning Part 1</h3>
-                    <span class="week-badge">Sep 16-18</span>
-                </div>
-                <div class="week-content">
-                    <p><strong>Tuesday:</strong> Bias, surveillance, data colonialism</p>
-                    <p><strong>Thursday:</strong> Training AI to understand global health narratives</p>
-                    <p><strong>📔 Due:</strong> Reflection #2</p>
+                
+                <div class="timeline-item reveal">
+                    <div class="timeline-content">
+                        <div class="week-number">WEEK 11-14</div>
+                        <h3>Polish & Present</h3>
+                        <p>Iteration, Storytelling, Final showcase</p>
+                        <span class="deliverable">🎯 Final Project</span>
+                    </div>
+                    <div class="timeline-dot"></div>
                 </div>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 2rem;">
-            <a href="#" class="btn btn-primary">View Full Schedule</a>
-        </p>
     </section>
 
     <!-- Assignments Section -->
     <section id="assignments">
-        <h2 class="section-title">Assignments & Grading</h2>
-        <p style="text-align: center; margin-bottom: 2rem; color: var(--graphite);">
-            This is a <span class="highlight">low-stakes, high-curiosity</span> course focused on engagement and creativity.
-        </p>
-        <div class="assignments-grid">
-            <div class="assignment-card">
-                <h4>Weekly Reflections</h4>
-                <p>Short responses (~250 words) connecting theory to design work</p>
-                <p class="weight">20% of grade</p>
-            </div>
-            <div class="assignment-card">
-                <h4>AI Tool Exercises</h4>
-                <p>Guided explorations of AI functionality and limitations</p>
-                <p class="weight">20% of grade</p>
-            </div>
-            <div class="assignment-card">
-                <h4>Team Check-ins</h4>
-                <p>Self and peer assessments, collaboration updates</p>
-                <p class="weight">15% of grade</p>
-            </div>
-            <div class="assignment-card">
-                <h4>Design Brief</h4>
-                <p>Problem framing, needs analysis, ethical stakes</p>
-                <p class="weight">10% of grade</p>
-            </div>
-            <div class="assignment-card">
-                <h4>Final Project</h4>
-                <p>Prototype, pitch, and rationale presented at showcase</p>
-                <p class="weight">30% of grade</p>
-            </div>
-            <div class="assignment-card">
-                <h4>Participation</h4>
-                <p>Contributions to discussions and studio sessions</p>
-                <p class="weight">5% of grade</p>
+        <div class="container">
+            <h2 class="section-title reveal">Low Stakes, High Curiosity</h2>
+            <p class="section-subtitle reveal">Grading focused on engagement and thoughtfulness, not perfection</p>
+            
+            <div class="grade-breakdown">
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">30%</div>
+                    <div class="grade-details">
+                        <h4>Final Project</h4>
+                        <p>Team prototype & presentation</p>
+                    </div>
+                </div>
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">20%</div>
+                    <div class="grade-details">
+                        <h4>Weekly Reflections</h4>
+                        <p>Short written responses (7 total)</p>
+                    </div>
+                </div>
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">20%</div>
+                    <div class="grade-details">
+                        <h4>AI Exercises</h4>
+                        <p>Hands-on tool exploration (4 total)</p>
+                    </div>
+                </div>
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">15%</div>
+                    <div class="grade-details">
+                        <h4>Team Check-ins</h4>
+                        <p>Collaboration & peer feedback</p>
+                    </div>
+                </div>
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">10%</div>
+                    <div class="grade-details">
+                        <h4>Design Brief</h4>
+                        <p>Mid-semester project proposal</p>
+                    </div>
+                </div>
+                <div class="grade-item reveal">
+                    <div class="grade-percentage">5%</div>
+                    <div class="grade-details">
+                        <h4>Participation</h4>
+                        <p>Active engagement in class</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Tools Section -->
     <section id="tools">
-        <h2 class="section-title">Tools & Platforms</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">All tools are provided - no purchases required!</p>
-        <div class="tools-container">
-            <div class="tool-card">
-                <h4>ChatGPT</h4>
-                <p>GPT-4o access provided</p>
-            </div>
-            <div class="tool-card">
-                <h4>Claude</h4>
-                <p>Anthropic's AI assistant</p>
-            </div>
-            <div class="tool-card">
-                <h4>Figma</h4>
-                <p>Design & prototyping</p>
-            </div>
-            <div class="tool-card">
-                <h4>Google Colab</h4>
-                <p>Optional coding space</p>
-            </div>
-            <div class="tool-card">
-                <h4>Slack</h4>
-                <p>Team communication</p>
-            </div>
-            <div class="tool-card">
-                <h4>Miro</h4>
-                <p>Collaborative boards</p>
+        <div class="container">
+            <h2 class="section-title reveal">Your AI Toolkit</h2>
+            <p class="section-subtitle reveal">All tools provided free - no purchases required!</p>
+            
+            <div class="tools-showcase">
+                <div class="tool-item reveal">
+                    <div class="tool-logo">💬</div>
+                    <h4>ChatGPT</h4>
+                    <p>GPT-4o</p>
+                </div>
+                <div class="tool-item reveal">
+                    <div class="tool-logo">🤖</div>
+                    <h4>Claude</h4>
+                    <p>Anthropic</p>
+                </div>
+                <div class="tool-item reveal">
+                    <div class="tool-logo">🎨</div>
+                    <h4>Figma</h4>
+                    <p>Design</p>
+                </div>
+                <div class="tool-item reveal">
+                    <div class="tool-logo">📊</div>
+                    <h4>Colab</h4>
+                    <p>Optional</p>
+                </div>
+                <div class="tool-item reveal">
+                    <div class="tool-logo">💬</div>
+                    <h4>Slack</h4>
+                    <p>Team chat</p>
+                </div>
+                <div class="tool-item reveal">
+                    <div class="tool-logo">🧩</div>
+                    <h4>Miro</h4>
+                    <p>Collaborate</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div style="text-align: center;">
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Questions? Excited to learn? Let's connect!</p>
-            <p><strong>Instructor:</strong> Eric Green, Ph.D.</p>
-            <p><strong>Office Hours:</strong> By appointment</p>
-            <p><strong>Email:</strong> <a href="mailto:eric.green@duke.edu" style="color: var(--duke-royal);">eric.green@duke.edu</a></p>
+        <div class="container">
+            <h2 class="section-title reveal">Let's Connect</h2>
+            <p class="section-subtitle reveal">Questions? Excited to learn? Reach out!</p>
+            
+            <div class="contact-info reveal">
+                <div class="contact-item">
+                    <h4>Instructor</h4>
+                    <p>Eric Green, Ph.D.</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Email</h4>
+                    <p><a href="mailto:eric.green@duke.edu">eric.green@duke.edu</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>Office Hours</h4>
+                    <p>By appointment</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Duke University | AI in Global Health</p>
+        <p>&copy; 2024 Duke University | Global Health 199FS</p>
         <p>Part of the <a href="https://focus.duke.edu">FOCUS Program</a></p>
     </footer>
 
-    <!-- Floating AI Assistant -->
-    <div class="ai-assistant" title="Ask me about the course!"></div>
-
     <script>
-        // Schedule accordion
-        document.querySelectorAll('.week-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const week = header.parentElement;
-                week.classList.toggle('active');
+        // Reveal elements on scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
             });
-        });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Check on load
 
         // Smooth scroll for navigation
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -660,20 +904,13 @@
             });
         });
 
-        // AI Assistant easter egg
-        document.querySelector('.ai-assistant').addEventListener('click', () => {
-            alert('Hi! I\'m your AI learning companion. Throughout this course, we\'ll explore how AI can help solve global health challenges. Ready to build something amazing together? 🚀');
-        });
-
-        // Add scroll effect to nav
+        // Dynamic nav background
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(1, 33, 105, 0.98)';
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
             } else {
-                nav.style.background = 'rgba(1, 33, 105, 0.95)';
-                nav.style.boxShadow = 'none';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
             }
         });
     </script>
