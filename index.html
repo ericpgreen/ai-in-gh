@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+/* Features grid responsive adjustments */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -718,9 +723,14 @@
                 font-size: 2rem;
             }
 
+            /* Features grid mobile */
             .features-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
             }
 
             /* Timeline mobile adjustments */
@@ -1092,7 +1102,6 @@
                 <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#assignments">Grading</a></li>
                 <li><a href="#tools">Tools</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1130,22 +1139,18 @@
             
             <div class="features-grid">
                 <div class="feature-card reveal">
-                    <div class="feature-icon">🌍</div>
                     <h3>Global Health Challenges</h3>
                     <p>Explore real-world health inequities and the social determinants that shape them. Learn how AI might help expand access to care in low-resource settings around the world.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <div class="feature-icon">🤖</div>
                     <h3>AI Without Code</h3>
                     <p>Develop a working knowledge of how large language models function. Use ChatGPT, Claude, and other tools to build and test ideas without deep technical knowledge.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <div class="feature-icon">✏️</div>
                     <h3>Design Thinking</h3>
                     <p>Use design thinking to identify needs and prototype potential solutions. Practice interdisciplinary collaboration and creative problem-solving through hands-on studios.</p>
                 </div>
                 <div class="feature-card reveal">
-                    <div class="feature-icon">⚖️</div>
                     <h3>Ethics First</h3>
                     <p>Critically examine bias, privacy, equity, and accountability in AI applications. Consider who is affected by the solutions you propose, and who might be left out.</p>
                 </div>
