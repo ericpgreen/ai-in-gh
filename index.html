@@ -412,6 +412,27 @@
             transform: translateX(3px);
         }
 
+        /* Horizontal connector lines */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background: var(--duke-royal);
+            opacity: 0.3;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            left: 50%;
+            transform: translateX(10px);
+        }
+
+        .timeline-item:nth-child(even)::after {
+            right: 50%;
+            transform: translateX(-10px);
+        }
+
         .timeline-item:nth-child(even) .timeline-content {
             margin-left: auto;
         }
@@ -437,19 +458,6 @@
             border: 4px solid white;
             z-index: 2;
             box-shadow: 0 0 0 4px var(--hatteras);
-        }
-
-        /* Connecting line between dots */
-        .timeline-connector {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 60px;
-            background: var(--duke-royal);
-            top: 20px;
-            z-index: 1;
-            opacity: 0.3;
         }
 
         .week-number {
@@ -627,6 +635,7 @@
             .nav-container {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 1rem;
             }
 
             .nav-branding {
@@ -649,10 +658,51 @@
             nav ul {
                 gap: 1rem;
                 font-size: 0.9rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .course-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Timeline mobile adjustments */
+            .timeline {
+                margin: 2rem 0;
             }
 
             .timeline::before {
@@ -662,20 +712,207 @@
             .timeline-item {
                 flex-direction: column;
                 align-items: flex-start;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-item::after {
+                display: none; /* Hide horizontal connectors on mobile */
             }
 
             .timeline-content {
-                width: calc(100% - 50px);
-                margin-left: 50px !important;
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
+                padding: 1.5rem;
+            }
+
+            .timeline-content::after {
+                display: none; /* Hide arrows on mobile */
             }
 
             .timeline-dot {
                 left: 20px;
             }
 
+            .week-number {
+                font-size: 0.8rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.9rem;
+            }
+
+            /* Grade breakdown mobile */
+            .grade-breakdown {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .grade-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            .grade-percentage {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                font-size: 3rem;
+            }
+
+            /* Tools mobile */
+            .tools-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .tool-item {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .tool-logo {
+                font-size: 2rem;
+            }
+
+            .tool-item h4 {
+                font-size: 0.9rem;
+            }
+
+            /* Contact mobile */
             .contact-info {
                 flex-direction: column;
                 gap: 2rem;
+            }
+
+            /* Modal mobile */
+            .modal-content {
+                margin: 20px;
+                padding: 2rem 1.5rem;
+                max-height: calc(100vh - 40px);
+                overflow-y: auto;
+            }
+
+            .close-modal {
+                font-size: 1.5rem;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .week-detail h2 {
+                font-size: 1.5rem;
+            }
+
+            .week-detail h3 {
+                font-size: 1.2rem;
+            }
+
+            .week-session {
+                padding: 1rem;
+            }
+
+            .session-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .reading-list {
+                font-size: 0.9rem;
+            }
+
+            .speaker-info {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+
+            .assignment-box {
+                padding: 1rem;
+            }
+
+            .assignment-box h4 {
+                font-size: 1.1rem;
+            }
+
+            /* Blob animations mobile */
+            .blob {
+                filter: blur(30px);
+            }
+
+            .blob-1 {
+                width: 250px;
+                height: 250px;
+            }
+
+            .blob-2 {
+                width: 200px;
+                height: 200px;
+            }
+
+            .blob-3 {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Very small devices */
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            nav li {
+                margin: 0.25rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .tools-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .grade-percentage {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Hamburger menu for very small screens */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--duke-navy);
+        }
+
+        @media (max-width: 480px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                background: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+            }
+
+            nav ul.show {
+                display: flex;
             }
         }
 
@@ -827,7 +1064,8 @@
                 <img src="dghi-logo.png" alt="Duke Global Health Institute" class="dghi-logo">
                 <div class="nav-logo">AI + Global Health</div>
             </div>
-            <ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul id="navMenu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#schedule">Schedule</a></li>
@@ -906,7 +1144,6 @@
                         <span class="deliverable">📔 Reflection #1</span>
                     </div>
                     <div class="timeline-dot"></div>
-                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
@@ -917,7 +1154,6 @@
                         <span class="deliverable">🧪 AI Exercise #1</span>
                     </div>
                     <div class="timeline-dot"></div>
-                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
@@ -928,7 +1164,6 @@
                         <span class="deliverable">📝 Design Brief</span>
                     </div>
                     <div class="timeline-dot"></div>
-                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
@@ -939,7 +1174,6 @@
                         <span class="deliverable">✅ Team Check-in</span>
                     </div>
                     <div class="timeline-dot"></div>
-                    <div class="timeline-connector"></div>
                 </div>
                 
                 <div class="timeline-item reveal">
@@ -1494,6 +1728,19 @@
                 `
             }
         };
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('show');
+            });
+        });
 
         // Modal functions
         function openWeekDetails(weekId) {
