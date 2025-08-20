@@ -604,6 +604,12 @@
             font-size: 0.85rem;
         }
 
+        /* Speaker Cards */
+        .speaker-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
         /* Contact Section */
         #contact {
             background: var(--duke-navy);
@@ -1101,6 +1107,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#assignments">Grading</a></li>
+                <li><a href="#speakers">Speakers</a></li>
                 <li><a href="#tools">Tools</a></li>
             </ul>
         </div>
@@ -1366,6 +1373,123 @@
                             <p>Real-world global health problems are complex. Solutions will be imperfect. Ask critical questions, revise your ideas, and embrace iteration.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guest Speakers Section -->
+    <section id="speakers" style="background: white; padding: 5rem 2rem;">
+        <div class="container">
+            <h2 class="section-title reveal">Guest Speakers</h2>
+            <p class="section-subtitle reveal">Learn from leading experts at the intersection of AI, global health, and innovation</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem;">
+                
+                <!-- Dr. Kameron Matthews -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQHzX7X3nEBLvA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516236246471?e=1740614400&v=beta&t=JtY7WQJ-5VKqZpRVSGgkz4v6EzUVzpKBT5UzPzRjQu0" alt="Dr. Kameron Matthews" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--duke-royal);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--duke-royal); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">KM</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Kameron Matthews</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Chief Health Officer, Cityblock Health</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Duke Public Policy '00</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Leading expert in health equity and social determinants of health, working to address healthcare disparities in underserved communities.</p>
+                    <a href="https://www.linkedin.com/in/kameronmatthews/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">LinkedIn Profile →</a>
+                </div>
+
+                <!-- Dr. Monica Agrawal -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://aihealth.duke.edu/wp-content/uploads/2023/10/Monica_Agrawal_Headshot_2023-scaled.jpg" alt="Dr. Monica Agrawal" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--eno);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--eno); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">MA</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Monica Agrawal</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Duke AI Health</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Biostatistics, Bioinformatics & Computer Science</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">AI researcher and former Flatiron Health executive, specializing in machine learning applications for healthcare and clinical data analysis.</p>
+                    <a href="https://aihealth.duke.edu/monica-agrawal/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Duke Profile →</a>
+                </div>
+
+                <!-- Dr. Walter Sinnott-Armstrong -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://philosophy.duke.edu/sites/philosophy.duke.edu/files/styles/people_photo_detail/public/externals/a21459dd1b5dc2aec11263b077a95c32.jpg" alt="Dr. Walter Sinnott-Armstrong" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--persimmon);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--persimmon); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">WS</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Walter Sinnott-Armstrong</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Chauncey Stillman Professor of Practical Ethics</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Duke Philosophy & Kenan Institute for Ethics</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Leading philosopher in AI ethics, moral psychology, and practical decision-making. Director of the Moral Attitudes and Decisions Lab.</p>
+                    <a href="https://kenan.ethics.duke.edu/mad-lab/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">MAD Lab →</a>
+                </div>
+
+                <!-- Lyvia Lusiji -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--piedmont); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">LL</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Lyvia Lusiji</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Product Lead, Jacaranda Health</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">AI for Global Health Impact</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Building AI tools for maternal health in Kenya and across Africa. Leading work on open-source LLMs in African languages for healthcare applications.</p>
+                    <a href="https://jacarandahealth.org/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Jacaranda Health →</a>
+                </div>
+
+                <!-- Jon Reifschneider -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://pratt.duke.edu/sites/pratt.duke.edu/files/styles/people_photo_detail/public/externals/ce62dbcb59ac6cd09b1166daed9b2fb2.jpg" alt="Jon Reifschneider" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--shale);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--shale); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">JR</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Jon Reifschneider</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Executive Director, Duke AI for Product Innovation</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Founder & CEO, Inquisite</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Serial entrepreneur and design thinking expert, leading Duke's AI product innovation programs and building AI-powered solutions for enterprise.</p>
+                    <a href="https://pratt.duke.edu/people/jon-reifschneider/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Duke Profile →</a>
+                </div>
+
+                <!-- Dr. Matt Scult -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--copper); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">MS</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Matt Scult</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Clinical AI Product, Grow Therapy</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Duke Clinical Psychology PhD '19</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Clinical psychologist turned product leader, developing AI tools to improve access to mental healthcare and clinical decision-making.</p>
+                    <a href="https://growtherapy.com/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Grow Therapy →</a>
+                </div>
+
+                <!-- Sidd Goyal -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--magnolia); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">SG</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Sidd Goyal</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">CEO, Nivi</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Healthcare Technology Entrepreneur</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Healthcare entrepreneur and startup expert, leading Nivi's mission to improve healthcare through AI-powered solutions and strategic cost modeling.</p>
+                    <a href="https://www.nivi.io/team" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Nivi Team →</a>
+                </div>
+
+                <!-- Dr. Jamie Jones -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://www.fuqua.duke.edu/sites/default/files/styles/faculty_detail/public/faculty/photos/jamie-jones.jpg" alt="Dr. Jamie Jones" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--duke-royal);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--duke-royal); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">JJ</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Jamie Jones</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Associate Professor of Practice</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Director, Duke Innovation & Entrepreneurship</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Innovation and entrepreneurship expert, guiding students and startups in developing sustainable business models for social impact ventures.</p>
+                    <a href="https://www.fuqua.duke.edu/faculty/jamie-jones" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Fuqua Profile →</a>
+                </div>
+
+                <!-- Dr. Elsa Friis -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--eno); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">EF</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Dr. Elsa Friis</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">Head of Product and Clinical, Alongside</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Duke Clinical Psychology PhD '20</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Clinical psychologist and product leader, developing AI-powered tools for mental health support and user-centered design in healthcare technology.</p>
+                    <a href="https://www.alongside.care/about" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Alongside →</a>
+                </div>
+
+                <!-- Megan Zweig -->
+                <div class="speaker-card reveal" style="background: var(--whisper-gray); padding: 2.5rem; border-radius: 20px; text-align: center; transition: all 0.3s ease;">
+                    <img src="https://rockhealth.com/wp-content/uploads/2021/09/Megan-Zweig-headshot-scaled.jpg" alt="Megan Zweig" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 1.5rem; display: block; border: 4px solid var(--persimmon);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div style="width: 150px; height: 150px; border-radius: 50%; background: var(--persimmon); margin: 0 auto 1.5rem; display: none; align-items: center; justify-content: center; font-size: 3rem; color: white; font-weight: bold;">MZ</div>
+                    <h3 style="color: var(--duke-navy); margin-bottom: 0.5rem; font-size: 1.4rem;">Megan Zweig</h3>
+                    <p style="color: var(--duke-royal); font-weight: 600; margin-bottom: 1rem;">President and CEO, Rock Health Advisory</p>
+                    <p style="color: var(--graphite); font-size: 0.9rem; margin-bottom: 1rem;">Duke BA Public Policy '08</p>
+                    <p style="color: var(--cast-iron); line-height: 1.6; font-size: 0.95rem;">Leading healthcare investor and strategist, guiding health tech ventures and analyzing trends in venture funding for AI-powered healthcare companies.</p>
+                    <a href="https://rockhealth.com/team/megan-zweig/" target="_blank" style="color: var(--duke-royal); font-size: 0.9rem;">Rock Health →</a>
                 </div>
             </div>
         </div>
